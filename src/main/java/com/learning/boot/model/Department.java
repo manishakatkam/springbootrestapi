@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,7 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "Department")
 @EntityListeners(AuditingEntityListener.class)
-public class Department implements Serializable{
+public class Department implements Serializable {
 
 	/**
 	 * 
@@ -30,13 +29,10 @@ public class Department implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
 	private String name;
 
-	@NotBlank
 	private String deptCode;
 
-	// @NotBlank
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date createdAt;

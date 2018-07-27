@@ -16,29 +16,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.boot.dao.EmployeeDAO;
+//import com.learning.boot.model.Employee;
+//import com.learning.boot.model.*;
 import com.learning.boot.model.Employee;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/EmployeeApi")
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeDAO employeeDAO;
-
+    
 	// save an employee to database
-	@PostMapping("/employees")
+	@PostMapping("/createEmployee")
 	public Employee createEmployee(@RequestBody Employee emp) {
 		return employeeDAO.save(emp);
 	}
 
 	// get all employees
-	@GetMapping("/employees")
+	@GetMapping("/getAllEmployees")
 	public List<Employee> getAllEmployees() {
 		return employeeDAO.findAll();
 	}
 
 	// get employee by an id
-	@GetMapping("/employees/{id}")
+	@GetMapping("/getEmployeeById/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Long empid) {
 		Employee emp = employeeDAO.findOne(empid);
 
@@ -50,7 +52,7 @@ public class EmployeeController {
 	}
 
 	// update an employee by empid
-	@PutMapping("/employees/{id}")
+	@PutMapping("/updateEmployee/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long empid,
 			@Valid @RequestBody Employee empdetails) {
 		Employee emp = employeeDAO.findOne(empid);
@@ -67,7 +69,7 @@ public class EmployeeController {
 	}
 
 	// delete an employee
-	@DeleteMapping("/employees/{id}")
+	@DeleteMapping("/deleteEmployee/{id}")
 	public ResponseEntity<Employee> deleteEmployee(@PathVariable(value = "id") Long empid) {
 		Employee emp = employeeDAO.findOne(empid);
 		if (emp == null)
@@ -79,11 +81,11 @@ public class EmployeeController {
 
 	}
 
-	@PostMapping("/employeesList")
+/*	@PostMapping("/employeesList")
 	public ResponseEntity<?> saveAll(@RequestBody List<Employee> empList) {
 		employeeDAO.saveAll(empList);
 		return ResponseEntity.ok().build();
 
-	}
+	}*/
 
 }

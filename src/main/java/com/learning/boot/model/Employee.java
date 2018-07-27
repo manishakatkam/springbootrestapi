@@ -19,34 +19,28 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="Employees")
+@Table(name = "Employees")
 @EntityListeners(AuditingEntityListener.class)
-public class Employee implements Serializable{
-	
+public class Employee implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7301724656266193823L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@NotBlank
+
 	private String name;
-	
-	@NotBlank
+
 	private String designation;
-	
-	@NotBlank
+
 	private String expertise;
-	
-//	@NotBlank
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date createdAt;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -87,6 +81,5 @@ public class Employee implements Serializable{
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
 
 }

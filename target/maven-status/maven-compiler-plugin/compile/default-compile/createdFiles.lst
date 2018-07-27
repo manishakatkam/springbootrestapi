@@ -1,5 +1,9 @@
-com\learning\boot\controller\EmployeeController.class
 com\learning\boot\dao\EmployeeDAO.class
+com\learning\boot\dao\DepartmentDAO.class
+com\learning\boot\exception\EmployeeException.class
+com\learning\boot\model\Department.class
+com\learning\boot\EmployeeApplication.class
+com\learning\boot\controller\EmployeeController.class
 com\learning\boot\model\Employee.class
 com\learning\boot\repository\EmployeeRepository.class
-com\learning\boot\EmployeeApplication.class
+com\learning\boot\repository\DepartmentRepository.class

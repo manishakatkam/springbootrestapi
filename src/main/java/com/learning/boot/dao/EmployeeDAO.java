@@ -23,20 +23,21 @@ public class EmployeeDAO {
 
 	// save an employee
 
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=EmployeeException.class)
 	public Employee save(Employee emp) {
 	
 		
-		try {
-			employeeRepository.save(emp);
-			Department dept = new Department();
-			dept.setId(1L);
-			dept.setName("IT");
-			dept.setDeptCode("Software");
-			departmentDAO.save(dept);
-		} catch (EmployeeException e) {
-			e.printStackTrace();
-		}
+		employeeRepository.save(emp);
+		Department dept = new Department();
+		dept.setId(1L);
+		dept.setName("IT");
+		dept.setDeptCode("Software");
+			try {
+				departmentDAO.save(dept);
+			} catch (EmployeeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return emp;
 	}
 
@@ -57,8 +58,8 @@ public class EmployeeDAO {
 	public void delete(Employee emp) {
 		employeeRepository.delete(emp);
 	}
-
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = NullPointerException.class)
+	
+	/*@Transactional(propagation = Propagation.REQUIRED, rollbackFor = NullPointerException.class)
 	public void saveAll(List<Employee> empList) {
 		int count = 0;
 		if (empList != null) {
@@ -72,6 +73,8 @@ public class EmployeeDAO {
 
 			}
 		}
-	}
+	}*/
+	
+	
 
 }
